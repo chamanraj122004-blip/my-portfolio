@@ -4,7 +4,7 @@ import AIChat from './components/AIChat';
 
 const supabase = createClient('YOUR_URL', 'YOUR_KEY');
 
-function App() {
+export default function App() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
