@@ -56,22 +56,49 @@ function Home() {
       transition={{ duration: 0.8 }}
     >
       {/* HERO */}
-      <section className="relative h-[60vh] flex items-center justify-center text-center">
+      <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800" />
 
         <motion.div
-          className="relative z-10 px-6"
+          className="relative z-10 px-6 flex flex-row items-center gap-12 max-w-6xl w-full"
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
-            Chaman Raj
-          </h1>
+          <motion.div
+            className="relative"
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.0, duration: 0.8 }}
+          >
+            <img
+              src="/chaman.jpeg"
+              alt="Profile"
+              className="w-40 h-40 rounded-full object-cover shadow-lg ring-4 ring-blue-400/50 ring-offset-2 ring-offset-slate-900"
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400/10 to-emerald-400/10 pointer-events-none"></div>
+          </motion.div>
 
-          <p className="mt-3 text-sm uppercase tracking-widest text-blue-400">
-            FULL STACK DEVELOPER • AI Enthusiast • Problem Solver
-          </p>
+          <div className="text-center md:text-left">
+            <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Chaman Raj
+            </h1>
+
+            <p className="mt-3 text-sm uppercase tracking-widest text-blue-400">
+              FULL STACK DEVELOPER • AI Enthusiast • Problem Solver
+            </p>
+
+            <motion.a
+              href="/CHAMAN RAJ.pdf"
+              download
+              className="mt-6 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-lg transition duration-300 inline-block"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              Resume
+            </motion.a>
+          </div>
         </motion.div>
       </section>
 
