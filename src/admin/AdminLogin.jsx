@@ -15,6 +15,13 @@ export default function AdminLogin() {
     e.preventDefault();
     setError("");
 
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Invalid email format");
+      return;
+    }
+
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -32,6 +39,7 @@ export default function AdminLogin() {
       <form
         onSubmit={login}
         className="glass-card p-10 w-full max-w-sm space-y-4"
+        noValidate
       >
         <h1 className="text-2xl font-bold text-center">Admin Login</h1>
 

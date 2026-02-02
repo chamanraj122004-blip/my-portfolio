@@ -13,8 +13,19 @@ export default function AdminDashboard() {
   const [description, setDescription] = useState("");
   const [link, setLink] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [editingId, setEditingId] = useState(null);
+
+  /* ================= AUTH PROTECTION ================= */
+  useEffect(() => {
+    const checkAuth = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (!data.session) {
+        window.location.href = "/";
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   /* ================= FETCH PROJECTS ================= */
   const fetchProjects = async () => {
@@ -36,13 +47,11 @@ export default function AdminDashboard() {
     setLoading(true);
 
     if (editingId) {
-      // UPDATE
       await supabase
         .from("projects")
         .update({ title, description, link })
         .eq("id", editingId);
     } else {
-      // ADD
       await supabase.from("projects").insert([{ title, description, link }]);
     }
 

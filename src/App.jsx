@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import AIChat from "./components/AIChat";
 import ContactForm from "./components/ContactForm";
 import AdminDashboard from "./admin/AdminDashboard";
+import AdminLogin from "./admin/AdminLogin";
 
 /* ================= SUPABASE ================= */
 const supabase = createClient(
@@ -71,15 +72,6 @@ function Home() {
           <p className="mt-3 text-sm uppercase tracking-widest text-blue-400">
             FULL STACK DEVELOPER • AI Enthusiast • Problem Solver
           </p>
-
-          <Link
-            to="/admin/login"
-            className="inline-block mt-6 px-6 py-3 rounded-xl
-              bg-slate-800/60 text-slate-300 text-sm font-semibold
-              hover:bg-slate-700 transition-all duration-300"
-          >
-            Admin Login
-          </Link>
         </motion.div>
       </section>
 
@@ -251,50 +243,6 @@ function Home() {
         </footer>
       </main>
     </motion.div>
-  );
-}
-
-/* ================= ADMIN LOGIN ================= */
-function AdminLogin() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
-  const login = async (e) => {
-    e.preventDefault();
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) setError(error.message);
-    else window.location.href = "/admin/dashboard";
-  };
-
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950">
-      <form onSubmit={login} className="glass-card p-8 w-96 space-y-4">
-        <h2 className="text-2xl font-bold text-center">Admin Login</h2>
-        {error && <p className="text-red-400">{error}</p>}
-
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-3 bg-slate-800 rounded"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-3 bg-slate-800 rounded"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button className="btn-primary w-full">Login</button>
-      </form>
-    </div>
   );
 }
 

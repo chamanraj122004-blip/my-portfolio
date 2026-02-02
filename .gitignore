@@ -26,3 +26,8 @@ dist-ssr
 .env.local
 src/backend/.env
 node_modules
+
+# Test files and directories
+tests/
+test-results/
+playwright-report/
